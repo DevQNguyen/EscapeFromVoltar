@@ -6,14 +6,17 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Rigidbody rocketRB;
+    AudioSource rocketAudio;
     [SerializeField] float thrustMultiplier = 1000f;
     [SerializeField] float rotationMultiplier = 45f;
-
+    
     // Start is called before the first frame update
     void Start()
     {
         // Assign reference variable to rigid body of this object
         rocketRB = GetComponent<Rigidbody>();
+        // Grab Audio Source comoponent
+        rocketAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,8 +32,18 @@ public class Movement : MonoBehaviour
         {
             // Add relative force to rocket
             rocketRB.AddRelativeForce(Vector3.up * thrustMultiplier * Time.deltaTime);
+            
+            // If clip is NOT playing
+            if (!rocketAudio.isPlaying)
+            {
+                // Play rocket boost sound
+                rocketAudio.Play();
+            }
         }
-
+        else
+        {
+            rocketAudio.Stop();
+        }
     }
 
     void ProcessRotationInput()
