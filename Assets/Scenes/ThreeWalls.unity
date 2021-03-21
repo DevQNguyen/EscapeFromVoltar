@@ -581,6 +581,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RectRocket
       objectReference: {fileID: 0}
+    - target: {fileID: 9117462643225604323, guid: 811a9463fbbca9d4e88cdeaa09494f18, type: 3}
+      propertyPath: engineThrustClip
+      value: 
+      objectReference: {fileID: 8300000, guid: cffd5b00fa2c7e74b97c5f8af0c4d2a3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 811a9463fbbca9d4e88cdeaa09494f18, type: 3}
 --- !u!1001 &7455627564890876979

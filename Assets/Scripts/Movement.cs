@@ -5,12 +5,16 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    Rigidbody rocketRB;
-    AudioSource rocketAudio;
+    // Parameters
     [SerializeField] float thrustMultiplier = 1000f;
     [SerializeField] float rotationMultiplier = 45f;
+    [SerializeField] AudioClip engineThrustClip;
     
-    // Start is called before the first frame update
+    // Cache gameObjects
+    Rigidbody rocketRB;
+    AudioSource rocketAudio;
+
+      // Start is called before the first frame update
     void Start()
     {
         // Assign reference variable to rigid body of this object
@@ -37,7 +41,7 @@ public class Movement : MonoBehaviour
             if (!rocketAudio.isPlaying)
             {
                 // Play rocket boost sound
-                rocketAudio.Play();
+                rocketAudio.PlayOneShot(engineThrustClip);
             }
         }
         else

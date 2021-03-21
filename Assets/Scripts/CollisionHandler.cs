@@ -5,7 +5,17 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     int currentSceneIndex;
-    [SerializeField] float delayInSeconds = 1f;
+    [SerializeField] float delayInSeconds = 1.5f;
+    [SerializeField] AudioClip successClip;
+    [SerializeField] AudioClip explosionClip;
+
+    // Cache 
+    AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void OnCollisionEnter(Collision other)
     {
@@ -36,6 +46,7 @@ public class CollisionHandler : MonoBehaviour
     void CrashSequence()
     {
         // [ToDo] add SFX
+        audioSource.PlayOneShot(explosionClip);
         // [ToDo] add particle effect
 
         // Disable Movement control
@@ -53,6 +64,7 @@ public class CollisionHandler : MonoBehaviour
     void SuccessSequence()
     {
         // [ToDo] add SFX
+        audioSource.PlayOneShot(successClip);
         // [ToDo] add particle effect
 
         GetComponent<Movement>().enabled = false;
