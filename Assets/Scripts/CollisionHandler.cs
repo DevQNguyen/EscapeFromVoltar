@@ -12,17 +12,20 @@ public class CollisionHandler : MonoBehaviour
     // Cache 
     AudioSource audioSource;
 
+    // State
+    bool isTransitioning = false;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
     void OnCollisionEnter(Collision other)
-    {
-        // Grab object tag name and assign to variable
-        string tagString = other.gameObject.tag;
-        
-        switch (tagString)
+    {       
+        // If in transition sequence, return
+        if (isTransitioning) { return; }
+
+        switch (other.gameObject.tag)
         {
             case "Friendly":
                 Debug.Log("Collided with a Friendly object!");
@@ -45,17 +48,17 @@ public class CollisionHandler : MonoBehaviour
     /// <param name="objTagName"></param>
     void CrashSequence()
     {
-        // [ToDo] add SFX
-        audioSource.PlayOneShot(explosionClip);
-        // [ToDo] add particle effect
+            isTransitioning = true;
+            // Play explosion clip
+            audioSource.PlayOneShot(explosionClip, 0.2f);
+            // [ToDo] add particle effect
 
-        // Disable Movement control
-        GetComponent<Movement>().enabled = false;
+            // Disable Movement control
+            GetComponent<Movement>().enabled = false;
 
-        // Play crash sound clip
-        Debug.Log("Play crash sound!");
-        Invoke("ReloadScene", delayInSeconds);
-
+            // Play crash sound clip
+            Debug.Log("Play crash sound!");
+            Invoke("ReloadScene", delayInSeconds);
     }
 
     /// <summary>
@@ -63,13 +66,16 @@ public class CollisionHandler : MonoBehaviour
     /// </summary>
     void SuccessSequence()
     {
-        // [ToDo] add SFX
-        audioSource.PlayOneShot(successClip);
-        // [ToDo] add particle effect
+            isTransitioning = true;
+            // Play success clip
+            audioSource.PlayOneShot(successClip);
+            // Disable crash sound
+            // [ToDo] add particle effect
 
-        GetComponent<Movement>().enabled = false;
-        Debug.Log("Play Success sound!");
-        Invoke("LoadNextScene", delayInSeconds);
+            // Disable controls
+            GetComponent<Movement>().enabled = false;
+            Debug.Log("Play Success sound!");
+            Invoke("LoadNextScene", delayInSeconds);
     }
 
     /// <summary>
