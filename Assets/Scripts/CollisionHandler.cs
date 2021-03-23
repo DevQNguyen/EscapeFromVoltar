@@ -9,6 +9,9 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip successClip;
     [SerializeField] AudioClip explosionClip;
 
+    [SerializeField] ParticleSystem explosionParticles;
+    [SerializeField] ParticleSystem successParticles;
+
     // Cache 
     AudioSource audioSource;
 
@@ -48,17 +51,19 @@ public class CollisionHandler : MonoBehaviour
     /// <param name="objTagName"></param>
     void CrashSequence()
     {
-            isTransitioning = true;
-            // Play explosion clip
-            audioSource.PlayOneShot(explosionClip, 0.2f);
-            // [ToDo] add particle effect
+        isTransitioning = true;
+        // Play explosion clip
+        audioSource.PlayOneShot(explosionClip, 0.2f);
+        
+        // Play particle effect
+        explosionParticles.Play();
 
-            // Disable Movement control
-            GetComponent<Movement>().enabled = false;
+        // Disable Movement control
+        GetComponent<Movement>().enabled = false;
 
-            // Play crash sound clip
-            Debug.Log("Play crash sound!");
-            Invoke("ReloadScene", delayInSeconds);
+        // Play crash sound clip
+        Debug.Log("Play crash sound!");
+        Invoke("ReloadScene", delayInSeconds);
     }
 
     /// <summary>
@@ -66,16 +71,17 @@ public class CollisionHandler : MonoBehaviour
     /// </summary>
     void SuccessSequence()
     {
-            isTransitioning = true;
-            // Play success clip
-            audioSource.PlayOneShot(successClip);
-            // Disable crash sound
-            // [ToDo] add particle effect
+        isTransitioning = true;
+        // Play success clip
+        audioSource.PlayOneShot(successClip);
 
-            // Disable controls
-            GetComponent<Movement>().enabled = false;
-            Debug.Log("Play Success sound!");
-            Invoke("LoadNextScene", delayInSeconds);
+        // Play particle effect
+        successParticles.Play();
+
+        // Disable controls
+        GetComponent<Movement>().enabled = false;
+        Debug.Log("Play Success sound!");
+        Invoke("LoadNextScene", delayInSeconds);
     }
 
     /// <summary>
