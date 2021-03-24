@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -9,6 +7,10 @@ public class Movement : MonoBehaviour
     [SerializeField] float thrustMultiplier = 1000f;
     [SerializeField] float rotationMultiplier = 45f;
     [SerializeField] AudioClip engineThrustClip;
+
+    [SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem leftThrusterParticles;
+    [SerializeField] ParticleSystem rightThrusterParticles;
     
     // Cache gameObjects
     Rigidbody rocketRB;
@@ -43,10 +45,19 @@ public class Movement : MonoBehaviour
                 // Play rocket boost sound
                 rocketAudio.PlayOneShot(engineThrustClip);
             }
+            
+            // If particles system NOT playing
+            if (!mainEngineParticles.isPlaying)
+            {
+                // Play main engine particles
+                mainEngineParticles.Play();
+            }
+
         }
         else
         {
             rocketAudio.Stop();
+            mainEngineParticles.Stop();
         }
     }
 
@@ -55,14 +66,31 @@ public class Movement : MonoBehaviour
         // Allow only one input at a time
         if (Input.GetKey(KeyCode.A))
         {
+            if (!rightThrusterParticles.isPlaying)
+            {
+                // Play left thruster particles
+                rightThrusterParticles.Play();
+            }
+
             //Debug.Log("'A' key pressed - Rotate Left!");
             ApplyRotation(rotationMultiplier);
+
         }
         else if (Input.GetKey(KeyCode.D))
         {
+            if (!leftThrusterParticles.isPlaying)
+            {
+                // Play right thruster particles
+                leftThrusterParticles.Play();
+            }
+
             //Debug.Log("'D' key pressed - Rotate Right!");
             ApplyRotation(-rotationMultiplier);
-            
+        }
+        else
+        {
+            rightThrusterParticles.Stop();
+            leftThrusterParticles.Stop();
         }
     }
 
@@ -74,5 +102,13 @@ public class Movement : MonoBehaviour
         transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
         // Unfreeze rotation to allow physics to take over again
         rocketRB.freezeRotation = false;
+    }
+
+
+    public void StopThrusterParticles()
+    {
+        mainEngineParticles.Stop();
+        rightThrusterParticles.Stop();
+        leftThrusterParticles.Stop();
     }
 }

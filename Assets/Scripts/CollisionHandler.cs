@@ -31,7 +31,7 @@ public class CollisionHandler : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Friendly":
-                Debug.Log("Collided with a Friendly object!");
+                Debug.Log($"Collided with: {other.gameObject.name}!");
                 break;
             case "Finish":
                 SuccessSequence();
@@ -62,7 +62,6 @@ public class CollisionHandler : MonoBehaviour
         GetComponent<Movement>().enabled = false;
 
         // Play crash sound clip
-        Debug.Log("Play crash sound!");
         Invoke("ReloadScene", delayInSeconds);
     }
 
@@ -80,7 +79,6 @@ public class CollisionHandler : MonoBehaviour
 
         // Disable controls
         GetComponent<Movement>().enabled = false;
-        Debug.Log("Play Success sound!");
         Invoke("LoadNextScene", delayInSeconds);
     }
 
