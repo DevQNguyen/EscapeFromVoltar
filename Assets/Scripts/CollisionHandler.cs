@@ -17,16 +17,24 @@ public class CollisionHandler : MonoBehaviour
 
     // State
     bool isTransitioning = false;
+    bool collisionDisabled = false;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        Debug.Log("Press 'L' to load next scene.");
+        Debug.Log("Press 'C' to toggle collsion disabled/enabled.");
+    }
+
+    void Update()
+    {
+        CheatKeyInputs();
     }
 
     void OnCollisionEnter(Collision other)
     {       
         // If in transition sequence, return
-        if (isTransitioning) { return; }
+        if (isTransitioning || collisionDisabled) { return; }
 
         switch (other.gameObject.tag)
         {
@@ -44,6 +52,22 @@ public class CollisionHandler : MonoBehaviour
 
 
     #region Methods
+
+    void CheatKeyInputs()
+    {
+        // If 'L' key pressed
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log("Next scene loading...");
+            LoadNextScene();
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("Collisions disabled/enabled...");
+            // Toggle collision disabled/enabled
+            collisionDisabled = !collisionDisabled;
+        }
+    }
 
     /// <summary>
     /// Reload scene when player collides with untagged object. 
