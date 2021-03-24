@@ -32,67 +32,94 @@ public class Movement : MonoBehaviour
         ProcessRotationInput();
     }
 
+
+    #region Methods
+
     void ProcessThrustInput()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            // Add relative force to rocket
-            rocketRB.AddRelativeForce(Vector3.up * thrustMultiplier * Time.deltaTime);
-            
-            // If clip is NOT playing
-            if (!rocketAudio.isPlaying)
-            {
-                // Play rocket boost sound
-                rocketAudio.PlayOneShot(engineThrustClip);
-            }
-            
-            // If particles system NOT playing
-            if (!mainEngineParticles.isPlaying)
-            {
-                // Play main engine particles
-                mainEngineParticles.Play();
-            }
-
+            MainEngineThrusting();
         }
         else
         {
-            rocketAudio.Stop();
-            mainEngineParticles.Stop();
+            StopMainEngineThrusting();
         }
     }
 
     void ProcessRotationInput()
     {
-        // Allow only one input at a time
+        // Press 'A' to rotate left/counterclockwise
         if (Input.GetKey(KeyCode.A))
         {
-            if (!rightThrusterParticles.isPlaying)
-            {
-                // Play left thruster particles
-                rightThrusterParticles.Play();
-            }
-
-            //Debug.Log("'A' key pressed - Rotate Left!");
-            ApplyRotation(rotationMultiplier);
+            RotateLeft();
 
         }
+        // Press 'D' to rotate right/clockwise
         else if (Input.GetKey(KeyCode.D))
         {
-            if (!leftThrusterParticles.isPlaying)
-            {
-                // Play right thruster particles
-                leftThrusterParticles.Play();
-            }
-
-            //Debug.Log("'D' key pressed - Rotate Right!");
-            ApplyRotation(-rotationMultiplier);
+            RotateRight();
         }
         else
         {
-            rightThrusterParticles.Stop();
-            leftThrusterParticles.Stop();
+            StopRotating();
         }
     }
+
+
+    void MainEngineThrusting()
+    {
+        // Add relative force to rocket
+        rocketRB.AddRelativeForce(Vector3.up * thrustMultiplier * Time.deltaTime);
+
+        // If clip is NOT playing
+        if (!rocketAudio.isPlaying)
+        {
+            // Play rocket boost sound
+            rocketAudio.PlayOneShot(engineThrustClip);
+        }
+
+        // If particles system NOT playing
+        if (!mainEngineParticles.isPlaying)
+        {
+            // Play main engine particles
+            mainEngineParticles.Play();
+        }
+    }
+
+    private void StopMainEngineThrusting()
+    {
+        rocketAudio.Stop();
+        mainEngineParticles.Stop();
+    }
+
+
+    private void RotateLeft()
+    {
+        if (!rightThrusterParticles.isPlaying)
+        {
+            // Play left thruster particles
+            rightThrusterParticles.Play();
+        }
+        ApplyRotation(rotationMultiplier);
+    }
+
+    private void RotateRight()
+    {
+        if (!leftThrusterParticles.isPlaying)
+        {
+            // Play right thruster particles
+            leftThrusterParticles.Play();
+        }
+        ApplyRotation(-rotationMultiplier);
+    }
+
+    private void StopRotating()
+    {
+        rightThrusterParticles.Stop();
+        leftThrusterParticles.Stop();
+    }
+
 
     void ApplyRotation(float rotationThisFrame)
     {
@@ -104,11 +131,8 @@ public class Movement : MonoBehaviour
         rocketRB.freezeRotation = false;
     }
 
+    #endregion
 
-    public void StopThrusterParticles()
-    {
-        mainEngineParticles.Stop();
-        rightThrusterParticles.Stop();
-        leftThrusterParticles.Stop();
-    }
 }
+
+

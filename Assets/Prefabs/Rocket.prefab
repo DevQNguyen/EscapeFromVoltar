@@ -709,7 +709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrustMultiplier: 1000
-  rotationMultiplier: 45
+  rotationMultiplier: 60
   engineThrustClip: {fileID: 8300000, guid: cffd5b00fa2c7e74b97c5f8af0c4d2a3, type: 3}
   mainEngineParticles: {fileID: 198100719216338334}
   leftThrusterParticles: {fileID: 584678575157637648}
@@ -1433,7 +1433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198100719057022332, guid: a3553fd250eb92d4091bebde350c6739, type: 3}
       propertyPath: simulationSpeed
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 198100719057022332, guid: a3553fd250eb92d4091bebde350c6739, type: 3}
       propertyPath: ShapeModule.m_Scale.z
