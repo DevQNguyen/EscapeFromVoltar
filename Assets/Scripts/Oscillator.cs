@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Oscillator : MonoBehaviour
 {
-    [SerializeField][Range(0, 1f)] float movementFactor;
+    float movementFactor;
     [SerializeField] Vector3 movementVector;
+    [SerializeField] float period = 2f;
+
     Vector3 startPos;
     
     
@@ -19,14 +19,23 @@ public class Oscillator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // ex. 10 sec / 2 sec = 5 cycles. Value gets larger over time
+        float cycles = Time.time / period;
+        
+        // Convert pi to radian
+        const float tau = Mathf.PI * 2;
+
+        // Calculate raw Sin wave over time, cycles between -1 to 1
+        float rawSinWave = Mathf.Sin(cycles * tau);
+
+        // Convert sin wave to move from 0 to 1 to 0
+        movementFactor = (rawSinWave + 1f) / 2f;
+
         // Calculate and cache offset position
         Vector3 offsetPos = movementFactor * movementVector;
-        Debug.Log($"Offset: {offsetPos}");
-        
+
         // Move transform to new position by adding offset value
         transform.position = startPos + offsetPos;
-        Debug.Log($"End Position: {transform.position}");
-        
     }
 }
 
