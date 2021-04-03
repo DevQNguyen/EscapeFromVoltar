@@ -19,6 +19,9 @@ public class Oscillator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Protect again division by 0
+        if (period <= Mathf.Epsilon) { return; }
+   
         // ex. 10 sec / 2 sec = 5 cycles. Value gets larger over time
         float cycles = Time.time / period;
         
