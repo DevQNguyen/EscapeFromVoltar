@@ -426,6 +426,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8741506
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.3710074
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
       propertyPath: m_LocalScale.z
       value: 5.08848
       objectReference: {fileID: 0}
@@ -648,12 +656,20 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7953243
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.330567
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
       propertyPath: m_LocalScale.z
       value: 4.6615577
       objectReference: {fileID: 0}
     - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.66
+      value: 18.52
       objectReference: {fileID: 0}
     - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -714,8 +730,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2bdcf3e47daa514fbe4f900478233a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementVector: {x: 12, y: 4, z: 0}
-  period: 3
+  movementVector: {x: 8, y: 4, z: 0}
+  period: 4
 --- !u!4 &282067390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
@@ -802,25 +818,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 37554376}
     m_Modifications:
-    - target: {fileID: 7743390161440134401, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: dcd40f46ea8b4e141bc0fe083d3637bf, type: 2}
     - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5.0973716
-      objectReference: {fileID: 0}
-    - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.6308715
-      objectReference: {fileID: 0}
-    - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 12.588001
       objectReference: {fileID: 0}
     - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2849,7 +2849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2bdcf3e47daa514fbe4f900478233a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementVector: {x: 0, y: 5, z: 0}
+  movementVector: {x: 0, y: 6, z: 0}
   period: 3
 --- !u!4 &1770422265 stripped
 Transform:
@@ -3720,6 +3720,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2684733
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.1934004
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743390161440134403, guid: b94312323bfb105449c779c7ce2d0bf7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.307631
       objectReference: {fileID: 0}
@@ -3782,5 +3790,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2bdcf3e47daa514fbe4f900478233a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementVector: {x: -3, y: 5, z: 0}
+  movementVector: {x: -1, y: 5, z: 0}
   period: 3

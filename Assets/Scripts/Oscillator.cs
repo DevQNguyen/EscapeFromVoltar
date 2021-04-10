@@ -19,7 +19,7 @@ public class Oscillator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Protect again division by 0
+        // Protect against division by 0 NaN error
         if (period <= Mathf.Epsilon) { return; }
    
         // ex. 10 sec / 2 sec = 5 cycles. Value gets larger over time
@@ -41,6 +41,7 @@ public class Oscillator : MonoBehaviour
         transform.position = startPos + offsetPos;
     }
 }
+
 
 
 
