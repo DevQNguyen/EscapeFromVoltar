@@ -19,17 +19,19 @@ public class Oscillator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Protect against division by 0 NaN error
+        // Protect against division by 0, NaN error
         if (period <= Mathf.Epsilon) { return; }
    
         // ex. 10 sec / 2 sec = 5 cycles. Value gets larger over time
         float cycles = Time.time / period;
+        //Debug.Log($"Cycles value: {cycles}");
         
         // Convert pi to radian
         const float tau = Mathf.PI * 2;
 
         // Calculate raw Sin wave over time, cycles between -1 to 1
         float rawSinWave = Mathf.Sin(cycles * tau);
+        //Debug.Log($"Raw SinWave Value: {rawSinWave}");
 
         // Convert sin wave to move from 0 to 1 to 0
         movementFactor = (rawSinWave + 1f) / 2f;
